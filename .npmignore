@@ -7,3 +7,4 @@ node_modules
 .stylelintrc.json
 yarn-error.log
 .vscode
+tsconfig.json
