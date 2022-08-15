@@ -1,0 +1,23 @@
+{
+  "name": "hooks",
+  "version": "0.1.0",
+  "description": "Our react hooks",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
+  "typings": "lib/index.d.ts",
+  "repository": "https://github.com/OpenThingies/Hooks",
+  "author": "AlternativeCorn <miaalternativecorn@gmail.com>",
+  "license": "GGPL2",
+  "private": false,
+  "scripts": {
+    "build": "tsup"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "tsup": "^6.2.2",
+    "typescript": "^4.7.4"
+  }
+}
