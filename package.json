@@ -1,5 +1,5 @@
 {
-  "name": "hooks",
+  "name": "@openthingies/hooks",
   "version": "0.1.0",
   "description": "Our react hooks",
   "main": "lib/index.cjs.js",
@@ -7,16 +7,27 @@
   "typings": "lib/index.d.ts",
   "repository": "https://github.com/OpenThingies/Hooks",
   "author": "AlternativeCorn <miaalternativecorn@gmail.com>",
-  "license": "GGPL2",
+  "license": "SEE LICENSE IN LICENSE",
   "private": false,
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "lint": "eslint src/",
+    "format": "eslint --fix src/"
   },
   "dependencies": {
     "react": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.7.1",
     "tsup": "^6.2.2",
     "typescript": "^4.7.4"
   }
