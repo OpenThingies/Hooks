@@ -12,7 +12,8 @@
   "scripts": {
     "build": "tsup",
     "lint": "eslint src/",
-    "format": "eslint --fix src/"
+    "format": "eslint --fix src/",
+    "publish": "yarn build && npm publish"
   },
   "dependencies": {
     "react": "^18.2.0"
