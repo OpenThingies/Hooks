@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 /**
- * Hooks a global keyress up to a callback function
+ * Hooks a global keypress up to a callback function
  * @param func The callback to execute on keypress
  */
 export default function useKeyPress(func: (e: KeyboardEvent) => void) {
