@@ -1,0 +1,103 @@
+version: 2.1
+jobs:
+  install_deps:
+    docker:
+      - image: node:16
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys: 
+            - yarn-packages-hooks-lib-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install dependencies
+          command: yarn install
+
+      - save_cache:
+          name: Caching dependencies
+          key: yarn-packages-hooks-lib-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+
+  lint:
+    docker:
+      - image: node:16
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys: 
+            - yarn-packages-hooks-lib-{{ checksum "yarn.lock" }}
+      - run:
+          name: ESLint
+          command: yarn lint
+
+  test:
+    docker:
+      - image: node:16
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys: 
+             - yarn-packages-hooks-lib-{{ checksum "yarn.lock" }}
+             - yarn-packages-hooks-lib
+      - run:
+          name: Run Unit Tests
+          command: yarn test
+
+  deploy:
+    docker:
+      - image: node:16
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys: 
+            - yarn-packages-hooks-lib{{ checksum "yarn.lock" }}
+            - yarn-packages-hooks-lib
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - run:
+          name: Build Source files
+          command: yarn build
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> $PWD/.npmrc
+      - run:
+          name: Publish package to NPM
+          command: npm publish
+
+
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - install_deps
+      - lint:
+          requires:
+            - install_deps
+  deploy:
+    jobs:
+      - install_deps
+      - verify:
+          type: approval
+          requires: 
+            - install_deps
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - deploy:
+          context: deploy
+          requires:
+            - verify
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
