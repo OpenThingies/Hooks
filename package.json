@@ -1,6 +1,6 @@
 {
   "name": "@openthingies/hooks",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Our react hooks",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
