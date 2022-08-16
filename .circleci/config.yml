@@ -82,7 +82,12 @@ workflows:
             - install_deps
   deploy:
     jobs:
-      - install_deps
+      - install_deps:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
       - verify:
           type: approval
           requires: 
