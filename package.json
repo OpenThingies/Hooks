@@ -1,6 +1,6 @@
 {
   "name": "@openthingies/hooks",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Our react hooks",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -12,8 +12,7 @@
   "scripts": {
     "build": "tsup",
     "lint": "eslint src/",
-    "format": "eslint --fix src/",
-    "publish": "yarn build && npm publish"
+    "format": "eslint --fix src/"
   },
   "dependencies": {
     "react": "^18.2.0"
